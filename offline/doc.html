@@ -1,0 +1,562 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	
+<head>
+<title>Walls Combo - Lukas Kuhn Schuster @ mtgtop8.com</title>
+<link rel="icon" type="image/png" href="https://www.mtgtop8.com/graph/favicon.png">
+<link href="/styles.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+<script>
+
+var x
+var y
+
+function MAJCoords(evt){
+	x=evt.clientX
+	y=evt.clientY
+	return false;	
+}
+
+
+function AffOther(pref){
+	odel=document.getElementById("other_div");
+	var r = odel.getBoundingClientRect();
+
+	if (document.documentElement && document.documentElement.scrollTop) {theTop = document.documentElement.scrollTop;}
+	else if (document.body) {theTop = document.body.scrollTop;}
+	
+	if(document.getElementById("other_tooltip").style.visibility=="visible"){
+		document.getElementById('other_tooltip').style.visibility="hidden";
+	}
+	else {
+		document.getElementById("other_tooltip").style.width=(r.right-r.left+80)+"px";
+		document.getElementById("other_tooltip").style.left=(r.left-40)+"px";
+		document.getElementById("other_tooltip").style.top=(theTop+r.top+30)+"px";
+		document.getElementById("other_tooltip").style.visibility="visible";
+	}
+	
+}
+
+function EffOther(){document.getElementById('other_tooltip').style.visibility="hidden";}
+
+</script>
+</head>
+	<body onmousemove="MAJCoords(event)">
+	<div align="center" class="page">
+	<div style="max-width:1280px;" valign="top">
+<div id="other_tooltip" style="visibility:hidden;width:200px;z-index:10;position: absolute;box-shadow: 0px 10px 10px #666666;padding:2px;background:white;border: 1px white solid;">
+
+	<div id="other_tooltip_content" style="padding:3px;" align="center">
+	<div style="padding-bottom:15px;"><div style="position:relative;"><a class="menu_item" href="/format?f=ALCH">ALCHEMY</a></div></div>
+	<div style="padding-bottom:15px;"><div style="position:relative;"><a class="menu_item" href="/format?f=PEA">PEASANT</a></div></div>
+	<div style="padding-bottom:15px;"><div style="position:relative;"><a class="menu_item" href="/format?f=BL">BLOCK</a></div></div>
+	<div style="padding-bottom:15px;"><div style="position:relative;"><a class="menu_item" href="/format?f=EX">EXTENDED</a></div></div>
+	<div style="padding-bottom:15px;"><div style="position:relative;"><a class="menu_item" href="/format?f=HIGH">HIGHLANDER</a></div></div>
+	<div style="padding-bottom:15px;"><div style="position:relative;"><a class="menu_item" href="/format?f=CHL">CANADIAN HIGHLANDER</a></div></div>
+	<div onclick="EffOther();" style="cursor:pointer;" class="S12">close</div>
+	</div>
+
+</div>
+<div style="border:1px:black solid;display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap;">
+  <div>
+    <div><a href="/index"><img style="width:250px;" src="/graph/title.png"></a></div>
+    <div class="G16" style="margin-top:5px;">netdecking with the stars</div>
+  </div> 	
+    
+    <div>
+      <div style="width:728px;height:90px;overflow:hidden;"></div>
+  </div>
+</div>
+
+<div style="position:relative;">
+<div style="margin:5px 0px 5px 0px;display:flex;justify-content:space-evenly;align-items:center;">
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=ST">STANDARD</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=PI">PIONEER</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=MO">MODERN</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=LE">LEGACY</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=HI">HISTORIC</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=EXP">EXPLORER</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="search">SEARCH</a></div>
+</div>
+<div style="margin:0px 0px 5px 0px;display:flex;justify-content:space-evenly;align-items:center;">
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=VI">VINTAGE</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item_chosen" href="/format?f=PAU">PAUPER<div class="c_tl"></div>
+<div class="c_tr"></div>
+<div class="c_bl"></div>
+<div class="c_br"></div></a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="/format?f=cEDH">cEDH</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item_14" href="/format?f=EDH">DUEL COMMANDER</a></div>
+<div style="position:relative;width:160px;">
+<a class="menu_item" href="format_limited">LIMITED</a><img style="display:inline-block;height:17px;" src="/graph/symbols/tbw-c.png">
+</div>
+<div id="other_div" onclick="AffOther('');" style="cursor:pointer;width:160px;"><a class="menu_item">OTHER</a></div>
+<div style="position:relative;width:160px;"><a class="menu_item" href="submit">SUBMIT</a></div>
+</div>
+<div style="position:absolute;top:8px;right:180px;display:block;"><img src="/graph/star.png"></div>
+<div style="position:absolute;top:37px;right:180px;display:block;"><img src="/graph/star.png"></div>
+</div>
+<script>
+//cur_id="";
+cur_id="";
+first_p="";
+first_MTGO_ID="";
+first_ch_price="";
+b_language="";
+prev_deck=-1;
+next_deck=504920;
+display="txt";
+
+function ShowList(cl){
+	if(cl=="top8"){o_cl="pts";}else{o_cl="top8";}
+	document.getElementById(o_cl+"_list").style.display="none";
+	document.getElementById(cl+"_list").style.display="block";
+	
+	//document.getElementById(o_cl+"_header").style.borderTop="2px white solid";
+	document.getElementById(o_cl+"_header").style.borderBottom="4px #00528b solid";
+	//document.getElementById(cl+"_header").style.borderTop="2px #cccccc solid";
+	document.getElementById(cl+"_header").style.borderBottom="4px white solid";
+}
+
+//AffCard(cur_id,first_p,first_MTGO_ID,first_ch_price);
+
+function AffCard(id,pname,MTGO_ID,ch_price){
+	if(cur_id!=""){
+		if (document.getElementById('md'+cur_id)) {document.getElementById('md'+cur_id).className='deck_line hover_tr';}
+		if (document.getElementById('sb'+cur_id)) {document.getElementById('sb'+cur_id).className='deck_line hover_tr';}
+	}
+	if(id!=""){
+	if (document.getElementById('md'+id)) {document.getElementById('md'+id).className='deck_line chosen_tr';}
+	if (document.getElementById('sb'+id)) {document.getElementById('sb'+id).className='deck_line chosen_tr';}
+	}
+	RequestContent("deck_card?gamerid="+id+"&MTGO_ID="+MTGO_ID+"&ch_price="+ch_price+"&pname="+pname, "card_div" );
+	//setTimeout(ShowCardLink, 500);
+	cur_id=id;
+}
+
+function AffCardV(id,pname,MTGO_ID,ch_price){
+	RequestContent("deck_card?gamerid="+id+"&MTGO_ID="+MTGO_ID+"&ch_price="+ch_price+"&pname="+pname, "card_div_content" );
+	
+	cur_id=id;
+
+ 	if (document.documentElement && document.documentElement.scrollTop) {
+		theTop = document.documentElement.scrollTop
+	}
+	else if (document.body) {
+		theTop = document.body.scrollTop
+	}
+	
+	
+	
+	newx=x-400;
+
+	if(newx<20){newx=20;}
+	if(newx+800>window.innerWidth){newx=window.innerWidth-820;}
+	
+	
+	document.getElementById("card_div").style.left=newx+"px";
+	document.getElementById("card_div").style.top=(theTop+y+40)+"px";
+	document.getElementById("card_div").style.visibility="visible";
+
+}
+
+function CloseCard(){
+	document.getElementById("card_div").style.visibility="hidden";
+	document.getElementById("card_div_content").innerHTML="";
+}
+
+function ShowCardLink(){
+	if(b_language=="fr"){
+		document.getElementById("card_infos_link").innerHTML="<a target=_blank href=mv_redir?c="+cur_id+">Plus d'informations sur cette carte<br>sur magic-ville.com</a>";
+	}
+}
+
+function RequestContent(my_url,my_dest) {
+var xhr_object = null;
+
+if(window.XMLHttpRequest) // Firefox
+   xhr_object = new XMLHttpRequest();
+else if(window.ActiveXObject) // Internet Explorer
+   xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
+
+
+xhr_object.open("POST", my_url, true);
+
+xhr_object.onreadystatechange = function() {
+   if(xhr_object.readyState == 4) document.getElementById(my_dest).innerHTML=xhr_object.responseText;
+}
+
+xhr_object.send(null);
+}
+
+function AffArena(pref){
+	omtga=document.getElementById("MTGA_button_div");
+	var r = omtga.getBoundingClientRect();
+
+	if (document.documentElement && document.documentElement.scrollTop) {theTop = document.documentElement.scrollTop;}
+	else if (document.body) {theTop = document.body.scrollTop;}
+	
+	document.getElementById("MTGA_tooltip").style.width=(r.right-r.left+200)+"px";
+	document.getElementById("MTGA_tooltip").style.left=(r.left-100)+"px";
+	document.getElementById("MTGA_tooltip").style.top=(theTop+r.top+22)+"px";
+	document.getElementById("MTGA_tooltip").style.visibility="visible";
+	document.getElementById("MTGA_deck").innerHTML="<iframe style=\"display:none;width:0px;height:0px;\" src=mtgarena?d=504919>";
+	
+}
+
+function AffCompanion(div_id){
+	omtga=document.getElementById("companion_"+div_id);
+	var r = omtga.getBoundingClientRect();
+
+	if (document.documentElement && document.documentElement.scrollTop) {theTop = document.documentElement.scrollTop;}
+	else if (document.body) {theTop = document.body.scrollTop;}
+
+	document.getElementById("companion_tooltip").style.left=(r.left-100)+"px";
+	document.getElementById("companion_tooltip").style.top=(theTop+r.top+22)+"px";
+	document.getElementById("companion_tooltip").style.visibility="visible";
+	
+}
+
+function EffCompanion(){
+	document.getElementById("companion_tooltip").style.visibility="hidden";
+}
+
+function EffArena(){
+	document.getElementById("MTGA_tooltip").style.visibility="hidden";
+	document.getElementById("MTGAOK").style.visibility="hidden";
+}
+
+function CopyMTGA(lang){
+	document.getElementById("MTGAdecklist").innerHTML=document.getElementById("MTGAdecklist"+lang).value;
+	copyText = document.getElementById("MTGAdecklist");
+	copyText.select();
+	document.execCommand("copy");
+	document.getElementById("MTGAOK").style.visibility="visible";
+}
+
+function Tap(ref) {
+	if(document.getElementById("CardScan_"+ref).className=="card_box_med_180Y") {
+		document.getElementById("CardScan_"+ref).className="card_box_med";
+		document.getElementById("CardScanBack_"+ref).className="card_box_med_180Ya";
+	}
+	else {
+		document.getElementById("CardScan_"+ref).className="card_box_med_180Y";
+		document.getElementById("CardScanBack_"+ref).className="card_box_med";
+	}
+
+}
+
+function checkKeycode(event) {
+	var keyDownEvent = event || window.event,
+	keycode = (keyDownEvent.which) ? keyDownEvent.which : keyDownEvent.keyCode;
+	
+	//Esc
+	if(keycode==27 & display=="visual"){ToggleDecks();}
+	//left arrow
+	else if(keycode==37 && prev_deck>0){window.open("event?e=41020&d="+prev_deck+"f=PAU&show_pts=","_top");}
+	//right arrow
+	else if(keycode==39 && next_deck>0){window.open("event?e=41020&d="+next_deck+"f=PAU&show_pts=","_top");}
+	
+}
+
+document.onkeydown = checkKeycode;
+
+</script>
+<div id="MTGA_tooltip" style="visibility:hidden;z-index:10;position: absolute;background:white;box-shadow: 0px 0px 10px #666666;padding:2px;border-radius: 5px;border: 1px grey solid;">
+
+	<div id="MTGA_tooltip_content" style="padding:3px;" align="center">
+	<div class="G10">Choose the language you use in MTG Arena.</div>
+	<div style="padding:2px;">
+	<table>
+	<tr>
+	<td width="33%" align="center"><a href="#" onclick="CopyMTGA('EN')">English</a></td>
+	<td width="33%" align="center"><a href="#" onclick="CopyMTGA('FR')">French</a></td>
+	<td width="33%" align="center"><a href="#" onclick="CopyMTGA('DE')">German</a></td>
+	</tr>
+	<tr>
+	<td width="33%" align="center"><a href="#" onclick="CopyMTGA('IT')">Italian</a></td>
+	<td width="33%" align="center"><a href="#" onclick="CopyMTGA('ES')">Spanish</a></td>
+	<td width="33%" align="center"><a href="#" onclick="CopyMTGA('PT')">Portuguese</a></td>
+	</tr>
+	</table>
+	</div>
+	<textarea id="MTGAdecklistEN" style="display:none;width:200px;height:150px;"></textarea>
+	<textarea id="MTGAdecklistFR" style="display:none;width:200px;height:150px;"></textarea>
+	<textarea id="MTGAdecklistDE" style="display:none;width:200px;height:150px;"></textarea>
+	<textarea id="MTGAdecklistIT" style="display:none;width:200px;height:150px;"></textarea>
+	<textarea id="MTGAdecklistES" style="display:none;width:200px;height:150px;"></textarea>
+	<textarea id="MTGAdecklistPT" style="display:none;width:200px;height:150px;"></textarea>
+	<textarea id="MTGAdecklist" style="width:200px;height:150px;"></textarea>
+	<div id="MTGAOK" class="V10" style="visibility:hidden;margin:2px;">Now you can click "Import" in MTG Arena.</div>
+	<div id="MTGA_deck" style="padding:3px;" align="center"></div>
+	<div onclick="EffArena();" style="cursor:pointer;" class="S12">close</div>
+	</div>
+
+</div>
+<div id="companion_tooltip" style="visibility:hidden;z-index:10;position: absolute;background:white;box-shadow: 0px 0px 10px #666666;padding:2px;border-radius: 5px;border: 1px grey solid;">
+
+	<div id="companion_tooltip_content" style="width:300px;padding:3px;" align="center">
+	 <div class="S12">Companion card</div>
+	 <div class="G12" align="justify">You may put it into your hand from outside the game for <img src="/graph/manas_c/3.png" style="vertical-align:-20%;"> any time you could cast a sorcery.</div>
+	<div onclick="EffCompanion();" style="cursor:pointer;margin-top:6px;" class="S12">close</div>
+	</div>
+
+</div>
+<div class="w_title" align="center">
+  <div style="display:flex;justify-content:space-evenly;align-items:center;">
+    <div class="event_title">Weekly Tournament @ Dalaran (Joinville, Brazil)</div>
+    
+    <div class="event_title">#1 Walls Combo - <a class="player_big" href="search?player=Lukas+Kuhn+Schuster">Lukas Kuhn Schuster</a>
+</div>
+    <div class="event_title"><a class="arrow" href="?e=41020&amp;d=504920&amp;f=PAU">&rarr;</a></div>
+  </div>
+  <div class="c_tl"></div>
+<div class="c_tr"></div>
+<div class="c_br"></div>
+</div>
+	<div style="display:flex;">
+	  <div style="width:25%;"><div style="background:#00528b;padding-bottom:4px;position:relative;">
+<div style="margin:0px 4px 0px 4px;">
+<div class="S14" align="center" style="background:white;margin-bottom:4px;">
+	<div class="meta_arch" style="padding:2px;">Pauper <img src="/graph/star.png"><img src="/graph/star.png">
+</div>
+	<div style="margin-bottom:5px;">33 players - 27/01/23</div>
+	<div class="S10" style="width:250px;overflow:hidden;padding-bottom:5px;"></div>
+	
+</div>
+			<div class="chosen_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">1</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504919&amp;f=PAU"><img src="/metas_thumbs/909.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504919&amp;f=PAU">Walls Combo</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Lukas+Kuhn+Schuster">Lukas Kuhn Schuster</a></div>
+			    </div>
+			  </div>
+			</div>
+			<div class="hover_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">2</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504920&amp;f=PAU"><img src="/metas_thumbs/517.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504920&amp;f=PAU">Dimir Terror</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Raphael+G%FCnther">Raphael G&uuml;nther</a></div>
+			    </div>
+			  </div>
+			</div>
+			<div class="hover_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">3</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504921&amp;f=PAU"><img src="/metas_thumbs/515.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504921&amp;f=PAU">Urzatron</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Robertinho+Silva">Robertinho Silva</a></div>
+			    </div>
+			  </div>
+			</div>
+			<div class="hover_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">4</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504922&amp;f=PAU"><img src="/metas_thumbs/1397.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504922&amp;f=PAU">Caw Gate</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Guilherme+Wp">Guilherme Wp</a></div>
+			    </div>
+			  </div>
+			</div>
+			<div class="hover_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">5</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504923&amp;f=PAU"><img src="/metas_thumbs/630.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504923&amp;f=PAU">Slivers</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Hovelha+Pop">Hovelha Pop</a></div>
+			    </div>
+			  </div>
+			</div>
+			<div class="hover_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">6</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504924&amp;f=PAU"><img src="/metas_thumbs/550.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504924&amp;f=PAU">Boros Tokens</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Angelo+Graper">Angelo Graper</a></div>
+			    </div>
+			  </div>
+			</div>
+			<div class="hover_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">7</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504925&amp;f=PAU"><img src="/metas_thumbs/517.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504925&amp;f=PAU">Dimir Terror</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Jo%E3o+Pedro">Jo&atilde;o Pedro</a></div>
+			    </div>
+			  </div>
+			</div>
+			<div class="hover_tr" style="padding:3px 0px 3px 0px;" align="left">
+			  <div style="display:flex;align-items:center;">
+			    <div style="width:40px;" align="center" class="S14">8</div>
+			    <div style="width:80px;height:40px;background:black;"><a href="?e=41020&amp;d=504926&amp;f=PAU"><img src="/metas_thumbs/539.jpg"></a></div>
+			    <div style="flex:1;">
+			      <div class="S14" style="width:100%;padding-left:4px;margin-bottom:4px;">
+<a href="?e=41020&amp;d=504926&amp;f=PAU">Aura Hexproof</a> </div>
+			      <div style="margin-right:10px;" align="right" class="G11"><a class="player" href="search?player=Jo%E3o+Cordeiro">Jo&atilde;o Cordeiro</a></div>
+			    </div>
+			  </div>
+			</div>
+</div>
+<div class="c_bl"></div>
+<div class="c_br"></div>
+</div></div>
+	  <div style="width:75%;padding:5px;">
+		
+		<div style="display:flex;justify-content:space-evenly;">
+			
+		<div class="Nav_buy" onclick="window.open('shop?d=504919&amp;s=ck')">
+		  <div class="Shop_title">Card Kingdom</div>
+		  <div class="S14 Nav_buy_price">$<span class="O14">37</span> <span class="G11">(NM)</span>
+</div>
+		   <div class="c_tl"></div>
+<div class="c_bl"></div>
+		</div>
+		    
+		<div class="Nav_buy" onclick="window.open('shop?d=504919&amp;s=tcg')">
+		  <div class="Shop_title">TCGplayer</div>
+		  <div class="Nav_buy_price S14"><div id="tcg_price" style="display:inline-block;" class="S14">$<span class="O14">53</span> <span class="G10">(Avg.)</span>
+</div></div>
+		   <div class="c_tl"></div>
+<div class="c_bl"></div>
+		</div>
+		    
+		<div class="Nav_buy" onclick="window.open('shop?d=504919&amp;s=mt')">
+		   <div class="Shop_title">Manatraders</div>
+		  <div class="Nav_buy_price S14"><div class="G10">Rent for $<span class="O14">9.95</span>
+</div></div>
+		  <div class="c_tl"></div>
+<div class="c_bl"></div>
+		</div>
+		   
+			
+		<div class="Nav_buy" onclick="window.open('shop?d=504919&amp;s=ch')">
+		  <div class="Shop_title">Cardhoarder</div>
+		  <div class="Nav_buy_price S14">
+<span class="O14">13</span> TIX</div>
+		   <div class="c_tl"></div>
+<div class="c_bl"></div>
+		</div>
+		</div>
+		<div style="display:flex;justify-content:space-evenly;margin-top:5px;">
+		  <div class="S14"><a href="?e=41020&amp;d=504919&amp;f=PAU&amp;switch=visual">Switch to Visual</a></div>
+		  <div class="S14">MD <span class="O14">60</span> SB <span class="O14">15</span>
+</div>
+          <div class="S14">Export &rarr; <div style="display:inline-block;margin-right:10px;"><a href="mtgo?d=504919&amp;f=Pauper_Walls_Combo_by_Lukas_Kuhn_Schuster"><img style="vertical-align:-5%;height:12px;" src="graph/online/mtgo.png"> MTGO</a></div>
+<div style="display:inline-block;"><a href="dec?d=504919&amp;f=Pauper_Walls_Combo_by_Lukas_Kuhn_Schuster">.dec</a></div>
+</div>
+		  <div class="S14"><a href="archetype?a=909">Walls Combo decks</a></div>
+		</div>
+<div style="display:flex;align-content:stretch;">
+<div style="margin:3px;flex:1;" align="left">
+<div class="O14">13 LANDS</div>
+<div id="mdabu092" class="deck_line hover_tr" onclick="AffCard('abu092','Forest','','');">13 <span class="L14">Forest</span> </div>
+<div class="O14" style="margin-top:5px;">37 CREATURES</div>
+<div id="mdrtr115" class="deck_line hover_tr" onclick="AffCard('rtr115','Axebane+Guardian','','');">4 <span class="L14">Axebane Guardian</span> </div>
+<div id="mdrav046" class="deck_line hover_tr" onclick="AffCard('rav046','Drift+of+Phantasms','','');">4 <span class="L14">Drift of Phantasms</span> </div>
+<div id="mdavr043" class="deck_line hover_tr" onclick="AffCard('avr043','Galvanic+Alchemist','','');">1 <span class="L14">Galvanic Alchemist</span> </div>
+<div id="mdkhm178" class="deck_line hover_tr" onclick="AffCard('khm178','Jaspera+Sentinel','','');">2 <span class="L14">Jaspera Sentinel</span> </div>
+<div id="mdchk234" class="deck_line hover_tr" onclick="AffCard('chk234','Orochi+Leafcaller','','');">2 <span class="L14">Orochi Leafcaller</span> </div>
+<div id="mdroe203" class="deck_line hover_tr" onclick="AffCard('roe203','Overgrown+Battlement','','');">4 <span class="L14">Overgrown Battlement</span> </div>
+<div id="mdvis106" class="deck_line hover_tr" onclick="AffCard('vis106','Quirion+Ranger','','');">4 <span class="L14">Quirion Ranger</span> </div>
+<div id="mdvow073" class="deck_line hover_tr" onclick="AffCard('vow073','Repository+Skaab','','');">1 <span class="L14">Repository Skaab</span> </div>
+<div id="mdmh2170" class="deck_line hover_tr" onclick="AffCard('mh2170','Rift+Sower','','');">1 <span class="L14">Rift Sower</span> </div>
+<div id="mdrna139" class="deck_line hover_tr" onclick="AffCard('rna139','Saruli+Caretaker','','');">4 <span class="L14">Saruli Caretaker</span> </div>
+<div id="mdafr071" class="deck_line hover_tr" onclick="AffCard('afr071','Secret+Door','','');">1 <span class="L14">Secret Door</span> </div>
+</div>
+<div style="margin:3px;flex:1;" align="left">
+<div id="mddmu238" class="deck_line hover_tr" onclick="AffCard('dmu238','Shield-Wall+Sentinel','','');">2 <span class="L14">Shield-Wall Sentinel</span> </div>
+<div id="mdice345" class="deck_line hover_tr" onclick="AffCard('ice345','Tinder+Wall','','');">3 <span class="L14">Tinder Wall</span> </div>
+<div id="mdznr173" class="deck_line hover_tr" onclick="AffCard('znr173','Tuktuk+Rubblefort','','');">2 <span class="L14">Tuktuk Rubblefort</span> </div>
+<div id="mdbfz157" class="deck_line hover_tr" onclick="AffCard('bfz157','Valakut+Invoker','','');">1 <span class="L14">Valakut Invoker</span> </div>
+<div id="mdwar182" class="deck_line hover_tr" onclick="AffCard('war182','Vivien\'s+Grizzly','','');">1 <span class="L14">Vivien's Grizzly</span> </div>
+<div class="O14" style="margin-top:5px;">9 INSTANTS and SORC.</div>
+<div id="mdmbs082" class="deck_line hover_tr" onclick="AffCard('mbs082','Lead+the+Stampede','','');">3 <span class="L14">Lead the Stampede</span> </div>
+<div id="mdogw141" class="deck_line hover_tr" onclick="AffCard('ogw141','Pulse+of+Murasa','','');">1 <span class="L14">Pulse of Murasa</span> </div>
+<div id="mdsco072" class="deck_line hover_tr" onclick="AffCard('sco072','Reaping+the+Graves','','');">1 <span class="L14">Reaping the Graves</span> </div>
+<div id="mdmh1193" class="deck_line hover_tr" onclick="AffCard('mh1193','Winding+Way','','');">4 <span class="L14">Winding Way</span> </div>
+<div class="O14" style="margin-top:5px;">1 OTHER SPELLS</div>
+<div id="mdsak038" class="deck_line hover_tr" onclick="AffCard('sak038','Freed+from+the+Real','','');">1 <span class="L14">Freed from the Real</span> </div>
+</div>
+<div style="margin:3px;flex:1;" align="left">
+<div class="O14">SIDEBOARD</div>
+<div id="sbinv055" class="deck_line hover_tr" onclick="AffCard('inv055','Crimson+Acolyte','','');">2 <span class="L14">Crimson Acolyte</span> </div>
+<div id="sball066" class="deck_line hover_tr" onclick="AffCard('all066','Gorilla+Shaman','','');">3 <span class="L14">Gorilla Shaman</span> </div>
+<div id="sbm20176" class="deck_line hover_tr" onclick="AffCard('m20176','Healer+of+the+Glade','','');">3 <span class="L14">Healer of the Glade</span> </div>
+<div id="sbths167" class="deck_line hover_tr" onclick="AffCard('ths167','Nylea\'s+Disciple','','');">1 <span class="L14">Nylea's Disciple</span> </div>
+<div id="sbinv168" class="deck_line hover_tr" onclick="AffCard('inv168','Obsidian+Acolyte','','');">1 <span class="L14">Obsidian Acolyte</span> </div>
+<div id="sbogw141" class="deck_line hover_tr" onclick="AffCard('ogw141','Pulse+of+Murasa','','');">1 <span class="L14">Pulse of Murasa</span> </div>
+<div id="sbjud010" class="deck_line hover_tr" onclick="AffCard('jud010','Ray+of+Revelation','','');">1 <span class="L14">Ray of Revelation</span> </div>
+<div id="sbapo018" class="deck_line hover_tr" onclick="AffCard('apo018','Standard+Bearer','','');">1 <span class="L14">Standard Bearer</span> </div>
+<div id="sbneo211" class="deck_line hover_tr" onclick="AffCard('neo211','Tamiyo\'s+Safekeeping','','');">2 <span class="L14">Tamiyo's Safekeeping</span> </div>
+</div>
+</div>
+		<div id="card_div" style="width:100%;visibility:visible;"></div>
+	  </div>
+	</div>
+<div class="w_title" style="margin-top:20px;">
+<div align="center">
+<a class="white" href="/privacy">Privacy Policy</a>
+
+<div style="padding:5px;" valign="top" class="W10" align="center">
+The information presented on this site about Magic: The Gathering, both literal and graphical, is copyrighted by Wizards of the Coast.
+This website is not produced, endorsed, supported, or affiliated with Wizards of the Coast.
+<div class="c_tl"></div>
+<div class="c_tr"></div>
+<div class="c_bl"></div>
+<div class="c_br"></div>
+</div>
+</div>
+</div>
+
+<div id="tag_box" style="display:none;"></div>
+<div id="cookie_window" class="cookie_banner">
+<div class="S16" style="flex-basis:80%;">
+This site uses cookies for analytics, ads and personalized content. By continuing to browse this site, you agree to this use as described in our <a class="white" href="/privacy">Privacy Policy</a> in detail.
+  </div>
+<div class="S16" style="flex-basis:20%;"><button style="width:80px;font-size : 16px;" onclick="CookieOK();">OK</button></div>
+</div>
+<script>
+
+function CookieOK(){
+  document.getElementById("cookie_window").style.display="none";
+  setCookie("cookieSeen","shown",60);
+  //TagOK();
+}
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+   
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+		
+}
+
+
+</script>
+</div>
+	</div>
+</body>
+	</html>
