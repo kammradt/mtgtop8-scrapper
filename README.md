@@ -2,7 +2,7 @@
 
 
 <div align="center">
-    <img alt="logo" src="logo.png" />
+    <img alt="logo" src="assets/logo.png" />
 </div>
 
 <p>
@@ -12,10 +12,39 @@
   </a>
 </p>
 
-> Scrape data from MTGTop8 into simple reports.
+> Scrape data from MTGTop8, Magic the Gathering tournaments, results and decks into simple reports.
 
+
+## How it looks
+
+### Convert this:
+
+![img.png](assets/demo.png)
+
+### Into this:
+
+<video src='assets/demo.mov' />
+
+
+## Why?
+- 🥹 Mixing coding and Magic 💛
+- 🎲 Being able to extract & format in a fast/easy way is really helpful, so it's possible to play with it around later.    
+- 📈 Reports are being used to generate Monthly Retrospectives related to the weekly tournaments around the city.  
+- 🧑‍💻 All of them are available [here, in mtgjoinville.super.site](https://mtgjoinville.super.site/)
+
+### The current ecosystem
+
+- [MTG Joinville Website](https://mtgjoinville.super.site/)
+  - 😉 Entrypoint for a bunch of information related to Magic in our city 
+- [MTGTop8 Scrapper](https://github.com/kammradt/mtgtop8-scrapper)
+  - 🪓 Will gather data from the main website that holds results from many tournaments
+- [MTG Top/Ranking generator?]
+  - Use reports from [MTGTop8 Scrapper](https://github.com/kammradt/mtgtop8-scrapper) to build social media ready images showing top 8 players and their decks. 
+  - This is being currently build and there are some [examples/prototypes here](https://mtgjoinville.super.site/noticias/janeiro2023-piooner-retrospectiva).
 
 ## Install
+
+> None of the builds/versions will probably be stable. This is a kind of pet project, so use at your own risk.
 
 ```sh
 gem install mtgtop8_scrapper
@@ -23,16 +52,24 @@ gem install mtgtop8_scrapper
 
 ## Usage
 
+> Feel free to copy it from examples.rb file
+
 ```sh
-# Feel free to copy it from examples.rb
 require 'mtgtop8_scrapper'
 
-mygems
-```
+link = 'https://www.mtgtop8.com/event?e=41158&d=505864&f=PAU'
 
-<div align="center">
-    <img alt="usage" src="mygems.gif" />
-</div>
+# Just create an instance passing a link as argument
+scrapper = MTGTop8Scrapper.new(link)
+
+# This generates and returns a report
+scrapper.generate_report
+# That you can also access later
+puts scrapper.report
+
+# You can also save the report locally as json
+scrapper.save_report_locally_as_json
+```
 
 
 ## Author
