@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |s|
-  s.version = '0.0.4'
+  s.version = '0.0.5'
   s.required_ruby_version = '>= 3.1.2'
-  spec.homepage = 'https://github.com/kammradt/mtgtop8-scrapper'
+  s.homepage = 'https://github.com/kammradt/mtgtop8-scrapper'
 
   s.name = 'mtgtop8_scrapper'
   s.summary = 'Scrape data from MTGTop8 into simple reports'
