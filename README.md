@@ -44,8 +44,13 @@ https://user-images.githubusercontent.com/34798570/220813931-7d3d73db-6b1e-4564-
 - [MTG Top/Ranking generator?]
   - Use reports from [MTGTop8 Scrapper](https://github.com/kammradt/mtgtop8-scrapper) to build social media ready images showing top 8 players and their decks. 
   - This is being currently build and there are some [examples/prototypes here](https://mtgjoinville.super.site/noticias/janeiro2023-piooner-retrospectiva).
+  - <details>
 
-## Install
+      <summary>Some image examples</summary>
+
+      <img alt="retro" src="assets/retro.png" />
+      <img alt="retro1" src="assets/retro1.png" />
+    </details>
 
 > None of the builds/versions will probably be stable. This is a kind of pet project, so use at your own risk.
 
