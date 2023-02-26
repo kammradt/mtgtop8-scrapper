@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mtgtop8_scrapper'
 
 link = 'https://www.mtgtop8.com/event?e=41158&d=505864&f=PAU'
@@ -12,4 +14,3 @@ puts scrapper.report
 
 # You can also save the report locally as json
 scrapper.save_report_locally_as_json
-

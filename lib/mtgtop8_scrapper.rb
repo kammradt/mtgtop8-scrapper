@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 require_relative 'scrapper'
 
 class MTGTop8Scrapper < Scrapper
   def generate_report
-    @doc = get_doc_or_cache
+    @doc = doc_or_cache
 
     players = top_8_players
     format = event_format
@@ -19,13 +21,15 @@ class MTGTop8Scrapper < Scrapper
     # TODO: Handle events with less than/more than 8
     indexes_for_top_8_player_table = (2..9).to_a
 
-    indexes_for_top_8_player_table.map do |i|
-      rank = rank_value(i)
-      player = player_value(i)
-      deck = deck_value(i)
+    indexes_for_top_8_player_table.map { |i| map_doc_to_report(i) }.sort_by { |player| player[:rank] }
+  end
 
-      { rank:, player:, deck: }
-    end.sort_by { |player| player[:rank] }
+  def map_doc_to_report(index)
+    rank = rank_value(index)
+    player = player_value(index)
+    deck = deck_value(index)
+
+    { rank:, player:, deck: }
   end
 
   def event_format
@@ -40,20 +44,20 @@ class MTGTop8Scrapper < Scrapper
     @doc.at(path).text.partition('-').last.strip
   end
 
-  def rank_value(i)
-    path = "/html/body/div/div/div[7]/div[1]/div/div[1]/div[#{i}]/div/div[1]"
+  def rank_value(index)
+    path = "/html/body/div/div/div[7]/div[1]/div/div[1]/div[#{index}]/div/div[1]"
 
     @doc.at(path).text.strip.to_i
   end
 
-  def player_value(i)
-    path = "/html/body/div/div/div[7]/div[1]/div/div[1]/div[#{i}]/div/div[3]/div[2]/a"
+  def player_value(index)
+    path = "/html/body/div/div/div[7]/div[1]/div/div[1]/div[#{index}]/div/div[3]/div[2]/a"
 
     @doc.at(path).text.strip
   end
 
-  def deck_value(i)
-    path = "/html/body/div/div/div[7]/div[1]/div/div[1]/div[#{i}]/div/div[3]/div[1]"
+  def deck_value(index)
+    path = "/html/body/div/div/div[7]/div[1]/div/div[1]/div[#{index}]/div/div[3]/div[1]"
 
     @doc.at(path).text.strip
   end
