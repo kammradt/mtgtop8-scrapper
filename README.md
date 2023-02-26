@@ -52,6 +52,7 @@ https://user-images.githubusercontent.com/34798570/220813931-7d3d73db-6b1e-4564-
       <img alt="retro1" src="assets/retro1.png" />
     </details>
 
+## Install
 > None of the builds/versions will probably be stable. This is a kind of pet project, so use at your own risk.
 
 ```sh
