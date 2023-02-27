@@ -32,25 +32,25 @@ https://user-images.githubusercontent.com/34798570/220813931-7d3d73db-6b1e-4564-
 ## Why?
 - 🥹 Mixing coding and Magic 💛
 - 🎲 Being able to extract & format in a fast/easy way is really helpful, so it's possible to play with it around later.    
-- 📈 Reports are being used to generate Monthly Retrospectives related to the weekly tournaments around the city.  
+- 📈 Reports are being used to generate Monthly Retrospectives related to the weekly tournaments around the city with [MTG Standings Generator](https://github.com/kammradt/mtg-standings-generator).  
 - 🧑‍💻 All of them are available [here, in mtgjoinville.super.site](https://mtgjoinville.super.site/)
 
 ### The current ecosystem
 
 - [MTG Joinville Website](https://mtgjoinville.super.site/)
-  - 😉 Entrypoint for a bunch of information related to Magic in our city 
+    - 😉 Entrypoint for a bunch of information related to Magic in our city
 - [MTGTop8 Scrapper](https://github.com/kammradt/mtgtop8-scrapper)
-  - 🪓 Will gather data from the main website that holds results from many tournaments
-- [MTG Top/Ranking generator?]
-  - Use reports from [MTGTop8 Scrapper](https://github.com/kammradt/mtgtop8-scrapper) to build social media ready images showing top 8 players and their decks. 
-  - This is being currently build and there are some [examples/prototypes here](https://mtgjoinville.super.site/noticias/janeiro2023-piooner-retrospectiva).
-  - <details>
+    - 🪓 Will gather data from the main website that holds results from many tournaments
+- [MTG Standings Generator](https://github.com/kammradt/mtg-standings-generator)
+    - Use reports from [MTGTop8 Scrapper](https://github.com/kammradt/mtgtop8-scrapper) to build social media ready images showing top 8 players and their decks.
+    - This is currently being used in our [MTG Joinville Website](https://mtgjoinville.super.site/) 🙏🏻.
+    - <details>
 
-      <summary>Some image examples</summary>
+        <summary>Some image examples</summary>
 
-      <img alt="retro" src="assets/retro.png" />
-      <img alt="retro1" src="assets/retro1.png" />
-    </details>
+        <img alt="retro" src="assets/retro.png" />
+        <img alt="retro1" src="assets/retro1.png" />
+      </details>
 
 ## Install
 > None of the builds/versions will probably be stable. This is a kind of pet project, so use at your own risk.
