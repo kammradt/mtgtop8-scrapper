@@ -63,7 +63,7 @@ gem install mtgtop8_scrapper
 
 > Feel free to copy it from examples.rb file
 
-```sh
+```ruby
 require 'mtgtop8_scrapper'
 
 link = 'https://www.mtgtop8.com/event?e=41158&d=505864&f=PAU'
