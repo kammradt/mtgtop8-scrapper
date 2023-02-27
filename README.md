@@ -64,6 +64,11 @@ gem install mtgtop8_scrapper
 > Feel free to copy it from examples.rb file
 
 ```ruby
+# If you are offline/don't want to hit the real server,
+# you can use the flag ENV['TESTING'] for work with files under /offline
+# 
+# Just use any truthy value for the ENV['TESTING'] var, such as '1' or 'true'
+
 require 'mtgtop8_scrapper'
 
 link = 'https://www.mtgtop8.com/event?e=41158&d=505864&f=PAU'

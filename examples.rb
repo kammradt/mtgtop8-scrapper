@@ -1,4 +1,7 @@
-# frozen_string_literal: true
+# If you are offline/don't want to hit the real server,
+# you can use the flag ENV['TESTING'] for work with files under /offline
+#
+# Just use any truthy value for the ENV['TESTING'] var, such as '1' or 'true'
 
 require 'mtgtop8_scrapper'
 
