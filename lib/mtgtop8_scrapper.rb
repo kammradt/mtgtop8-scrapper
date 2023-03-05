@@ -18,18 +18,24 @@ class MTGTop8Scrapper < Scrapper
   private
 
   def top_8_players
-    # TODO: Handle events with less than/more than 8
     indexes_for_top_8_player_table = (2..9).to_a
 
-    indexes_for_top_8_player_table.map { |i| map_doc_to_report(i) }.sort_by { |player| player[:rank] }
+    indexes_for_top_8_player_table.map { |i| map_doc_to_report(i) }.compact.sort_by { |player| player[:rank] }
   end
 
   def map_doc_to_report(index)
+    return unless index_exists?(index)
+
     rank = rank_value(index)
     player = player_value(index)
     deck = deck_value(index)
 
     { rank:, player:, deck: }
+  end
+
+  def index_exists?(index)
+    # We verify if the rank exists to skip trying to get the 5th person if the event only has 4 people in it.
+    !find_rank_element(index).nil?
   end
 
   def event_format
@@ -44,10 +50,14 @@ class MTGTop8Scrapper < Scrapper
     @doc.at(path).text.partition('-').last.strip
   end
 
-  def rank_value(index)
+  def find_rank_element(index)
     path = "/html/body/div/div/div[7]/div[1]/div/div[1]/div[#{index}]/div/div[1]"
 
-    @doc.at(path).text.strip.to_i
+    @doc.at(path)
+  end
+
+  def rank_value(index)
+    find_rank_element(index).text.strip.to_i
   end
 
   def player_value(index)
